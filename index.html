@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Orbit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #120018, #000);
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 60px 20px 30px;
+}
+
+h1 {
+  font-size: 60px;
+  letter-spacing: 6px;
+  color: #b026ff;
+  text-shadow: 0 0 10px #b026ff, 0 0 30px #6a00ff;
+  margin: 0;
+}
+
+p {
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* SEARCH BAR */
+.search {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 50px;
+}
+
+.search input {
+  width: 60%;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #b026ff;
+  background: #0a0010;
+  color: white;
+  outline: none;
+  box-shadow: 0 0 10px #6a00ff33;
+}
+
+/* GAME GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 40px 60px;
+}
+
+.card {
+  background: #0a0010;
+  border: 1px solid #2a003f;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 0 10px #000;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border: 1px solid #b026ff;
+  box-shadow: 0 0 15px #b026ff;
+}
+
+.card h3 {
+  margin: 0;
+  color: #b026ff;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>ORBIT</h1>
+  <p>Neon game portal • clean UI • fast access</p>
+</header>
+
+<div class="search">
+  <input type="text" placeholder="Search games...">
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <h3>Game 1</h3>
+    <p>Click to play</p>
+  </div>
+
+  <div class="card">
+    <h3>Game 2</h3>
+    <p>Click to play</p>
+  </div>
+
+  <div class="card">
+    <h3>Game 3</h3>
+    <p>Click to play</p>
+  </div>
+
+  <div class="card">
+    <h3>Game 4</h3>
+    <p>Click to play</p>
+  </div>
+
+  <div class="card">
+    <h3>Game 5</h3>
+    <p>Click to play</p>
+  </div>
+
+  <div class="card">
+    <h3>Game 6</h3>
+    <p>Click to play</p>
+  </div>
+
+</div>
+
+<footer>
+  Orbit • built for fast gaming access
+</footer>
+
+</body>
+</html>
