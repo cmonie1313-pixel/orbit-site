@@ -6,11 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
+h1 {
+  font-size: 60px;
+  color: #b026ff;
+  text-shadow: 0 0 15px #b026ff, 0 0 30px #6a00ff;
   margin: 0;
-  background: radial-gradient(circle at top, #120018, #000);
-  font-family: Arial, sans-serif;
-  color: white;
+  transition: 0.3s ease;
+}
+
+/* stronger glow on hover */
+h1:hover {
+  text-shadow: 
+    0 0 10px #b026ff,
+    0 0 25px #b026ff,
+    0 0 50px #6a00ff,
+    0 0 80px #b026ff;
+  transform: scale(1.05);
+}
 }
 
 /* HEADER */
