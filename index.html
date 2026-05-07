@@ -6,30 +6,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ===== BASE ===== */
 body {
   margin: 0;
   background: radial-gradient(circle at top, #120018, #000);
   font-family: Arial, sans-serif;
+  font-weight: 700;
   color: white;
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
-/* SIDEBAR */
+/* FLOAT ANIMATION */
+@keyframes floaty {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ===== SIDEBAR ===== */
 .sidebar {
-  width: 220px;
+  width: 230px;
   background: #0a0010;
   border-right: 1px solid #2a003f;
   padding: 20px;
-  box-shadow: 0 0 20px #000;
+  box-shadow: 0 0 25px #000;
 }
 
 .logo {
-  font-size: 28px;
+  font-size: 30px;
   color: #b026ff;
-  text-shadow: 0 0 15px #b026ff;
+  text-shadow: 0 0 15px #b026ff, 0 0 30px #6a00ff;
   margin-bottom: 30px;
+  animation: floaty 3.5s ease-in-out infinite;
+  font-weight: 900;
 }
 
 .nav-item {
@@ -39,18 +50,20 @@ body {
   cursor: pointer;
   transition: 0.2s;
   border: 1px solid transparent;
+  font-weight: 800;
 }
 
 .nav-item:hover {
   background: #1a0026;
   border: 1px solid #b026ff;
-  box-shadow: 0 0 10px #b026ff;
+  box-shadow: 0 0 15px #b026ff;
+  transform: translateX(4px);
 }
 
-/* MAIN AREA */
+/* ===== MAIN ===== */
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 25px;
   overflow-y: auto;
 }
 
@@ -59,65 +72,75 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .title {
-  font-size: 30px;
+  font-size: 34px;
   color: #b026ff;
-  text-shadow: 0 0 20px #b026ff;
+  text-shadow: 0 0 20px #b026ff, 0 0 40px #6a00ff;
+  animation: floaty 4s ease-in-out infinite;
+  font-weight: 900;
 }
 
-/* GRID */
+/* ===== GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 15px;
 }
 
-/* CARDS */
+/* ===== CARDS ===== */
 .card {
   background: #0a0010;
   border: 1px solid #2a003f;
   border-radius: 15px;
-  padding: 15px;
+  padding: 18px;
   cursor: pointer;
   transition: 0.25s;
   position: relative;
   overflow: hidden;
+  animation: floaty 5s ease-in-out infinite;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.03);
   border: 1px solid #b026ff;
-  box-shadow: 0 0 20px #b026ff;
+  box-shadow: 0 0 25px #b026ff;
 }
 
 .card h3 {
   margin: 0;
   color: #b026ff;
+  font-weight: 900;
 }
 
-/* MUSIC PLAYER */
+.card p {
+  color: #888;
+  font-size: 13px;
+}
+
+/* ===== MUSIC ===== */
 .music {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 15px;
   background: #0a0010;
   border: 1px solid #2a003f;
   border-radius: 15px;
-  box-shadow: 0 0 10px #000;
+  animation: floaty 6s ease-in-out infinite;
 }
 
 audio {
   width: 100%;
   margin-top: 10px;
-  filter: drop-shadow(0 0 8px #b026ff);
+  filter: drop-shadow(0 0 10px #b026ff);
 }
 
-/* FOOTER TEXT */
+/* ===== SMALL TEXT ===== */
 .small {
-  color: #666;
   font-size: 12px;
+  color: #666;
+  margin-top: 5px;
 }
 </style>
 </head>
@@ -139,42 +162,42 @@ audio {
 <div class="main">
 
   <div class="topbar">
-    <div class="title">Dashboard</div>
-    <div class="small">Orbit OS • Neon Edition</div>
+    <div class="title">Orbit Dashboard</div>
+    <div class="small">Neon OS v1</div>
   </div>
 
   <!-- GAME GRID -->
   <div class="grid">
 
     <div class="card" onclick="openGame('https://example.com')">
-      <h3>Action Game</h3>
-      <p>Fast paced</p>
+      <h3>Action</h3>
+      <p>Fast gameplay</p>
     </div>
 
     <div class="card" onclick="openGame('https://example.com')">
-      <h3>Puzzle Game</h3>
-      <p>Brain challenge</p>
+      <h3>Puzzle</h3>
+      <p>Brain games</p>
     </div>
 
     <div class="card" onclick="openGame('https://example.com')">
-      <h3>Retro Game</h3>
-      <p>Old school vibes</p>
+      <h3>Retro</h3>
+      <p>Classic arcade</p>
     </div>
 
     <div class="card" onclick="openGame('https://example.com')">
       <h3>Arcade</h3>
-      <p>Classic feel</p>
+      <p>High score chase</p>
     </div>
 
   </div>
 
   <!-- MUSIC -->
   <div class="music">
-    <h3 style="color:#b026ff; margin:0;">Music Player</h3>
+    <h3 style="color:#b026ff; margin:0; font-weight:900;">Music Player</h3>
     <audio controls>
       <source src="music.mp3" type="audio/mpeg">
     </audio>
-    <div class="small">Upload your own MP3 as music.mp3</div>
+    <div class="small">Upload: music.mp3 to repo</div>
   </div>
 
 </div>
