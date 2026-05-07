@@ -16,69 +16,85 @@ body {
 /* HEADER */
 header {
   text-align: center;
-  padding: 60px 20px 30px;
+  padding: 60px 20px 20px;
 }
 
 h1 {
   font-size: 60px;
   letter-spacing: 6px;
   color: #b026ff;
-  text-shadow: 0 0 10px #b026ff, 0 0 30px #6a00ff;
+  text-shadow: 0 0 10px #b026ff, 0 0 25px #6a00ff;
   margin: 0;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #b026ff; }
+  to { text-shadow: 0 0 25px #b026ff, 0 0 40px #6a00ff; }
 }
 
 p {
   color: #aaa;
-  margin-top: 10px;
 }
 
-/* SEARCH BAR */
-.search {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0 50px;
-}
-
-.search input {
-  width: 60%;
-  max-width: 500px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #b026ff;
-  background: #0a0010;
-  color: white;
-  outline: none;
-  box-shadow: 0 0 10px #6a00ff33;
-}
-
-/* GAME GRID */
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 20px;
-  padding: 0 40px 60px;
+  padding: 40px;
 }
 
+/* CARD */
 .card {
   background: #0a0010;
   border: 1px solid #2a003f;
   border-radius: 15px;
   padding: 20px;
   text-align: center;
-  transition: 0.3s;
   cursor: pointer;
-  box-shadow: 0 0 10px #000;
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow sweep animation */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(176,38,255,0.2), transparent 60%);
+  transform: rotate(0deg);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.03);
   border: 1px solid #b026ff;
-  box-shadow: 0 0 15px #b026ff;
+  box-shadow: 0 0 20px #b026ff;
 }
 
 .card h3 {
   margin: 0;
   color: #b026ff;
+}
+
+.card p {
+  color: #777;
+  font-size: 12px;
+}
+
+/* BUTTON FEEL ON CLICK */
+.card:active {
+  transform: scale(0.98);
 }
 
 /* FOOTER */
@@ -95,50 +111,42 @@ footer {
 
 <header>
   <h1>ORBIT</h1>
-  <p>Neon game portal • clean UI • fast access</p>
+  <p>Neon game portal</p>
 </header>
-
-<div class="search">
-  <input type="text" placeholder="Search games...">
-</div>
 
 <div class="grid">
 
-  <div class="card">
+  <div class="card" onclick="openGame('https://example.com')">
     <h3>Game 1</h3>
     <p>Click to play</p>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="openGame('https://example.com')">
     <h3>Game 2</h3>
     <p>Click to play</p>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="openGame('https://example.com')">
     <h3>Game 3</h3>
     <p>Click to play</p>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="openGame('https://example.com')">
     <h3>Game 4</h3>
-    <p>Click to play</p>
-  </div>
-
-  <div class="card">
-    <h3>Game 5</h3>
-    <p>Click to play</p>
-  </div>
-
-  <div class="card">
-    <h3>Game 6</h3>
     <p>Click to play</p>
   </div>
 
 </div>
 
 <footer>
-  Orbit • built for fast gaming access
+  Orbit • neon arcade UI
 </footer>
+
+<script>
+function openGame(url) {
+  window.open(url, "_blank");
+}
+</script>
 
 </body>
 </html>
