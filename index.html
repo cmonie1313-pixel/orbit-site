@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Orbit</title>
+<title>Orbit OS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -11,73 +11,84 @@ body {
   background: radial-gradient(circle at top, #120018, #000);
   font-family: Arial, sans-serif;
   color: white;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 60px 20px 20px;
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #0a0010;
+  border-right: 1px solid #2a003f;
+  padding: 20px;
+  box-shadow: 0 0 20px #000;
 }
 
-h1 {
-  font-size: 60px;
-  letter-spacing: 6px;
+.logo {
+  font-size: 28px;
   color: #b026ff;
-  text-shadow: 0 0 10px #b026ff, 0 0 25px #6a00ff;
-  margin: 0;
-  animation: glow 2s infinite alternate;
+  text-shadow: 0 0 15px #b026ff;
+  margin-bottom: 30px;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px #b026ff; }
-  to { text-shadow: 0 0 25px #b026ff, 0 0 40px #6a00ff; }
+.nav-item {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid transparent;
 }
 
-p {
-  color: #aaa;
+.nav-item:hover {
+  background: #1a0026;
+  border: 1px solid #b026ff;
+  box-shadow: 0 0 10px #b026ff;
+}
+
+/* MAIN AREA */
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* TOP BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 30px;
+  color: #b026ff;
+  text-shadow: 0 0 20px #b026ff;
 }
 
 /* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 40px;
+  gap: 15px;
 }
 
-/* CARD */
+/* CARDS */
 .card {
   background: #0a0010;
   border: 1px solid #2a003f;
   border-radius: 15px;
-  padding: 20px;
-  text-align: center;
+  padding: 15px;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.25s;
   position: relative;
   overflow: hidden;
 }
 
-/* glow sweep animation */
-.card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(176,38,255,0.2), transparent 60%);
-  transform: rotate(0deg);
-  transition: 0.5s;
-  opacity: 0;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
 .card:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: translateY(-6px);
   border: 1px solid #b026ff;
   box-shadow: 0 0 20px #b026ff;
 }
@@ -87,21 +98,25 @@ p {
   color: #b026ff;
 }
 
-.card p {
-  color: #777;
-  font-size: 12px;
+/* MUSIC PLAYER */
+.music {
+  margin-top: 20px;
+  padding: 15px;
+  background: #0a0010;
+  border: 1px solid #2a003f;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #000;
 }
 
-/* BUTTON FEEL ON CLICK */
-.card:active {
-  transform: scale(0.98);
+audio {
+  width: 100%;
+  margin-top: 10px;
+  filter: drop-shadow(0 0 8px #b026ff);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #555;
+/* FOOTER TEXT */
+.small {
+  color: #666;
   font-size: 12px;
 }
 </style>
@@ -109,38 +124,60 @@ footer {
 
 <body>
 
-<header>
-  <h1>ORBIT</h1>
-  <p>Neon game portal</p>
-</header>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="logo">ORBIT</div>
 
-<div class="grid">
+  <div class="nav-item">🏠 Home</div>
+  <div class="nav-item">🎮 Games</div>
+  <div class="nav-item">🔥 Trending</div>
+  <div class="nav-item">⭐ Favorites</div>
+  <div class="nav-item">⚙️ Settings</div>
+</div>
 
-  <div class="card" onclick="openGame('https://example.com')">
-    <h3>Game 1</h3>
-    <p>Click to play</p>
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <div class="title">Dashboard</div>
+    <div class="small">Orbit OS • Neon Edition</div>
   </div>
 
-  <div class="card" onclick="openGame('https://example.com')">
-    <h3>Game 2</h3>
-    <p>Click to play</p>
+  <!-- GAME GRID -->
+  <div class="grid">
+
+    <div class="card" onclick="openGame('https://example.com')">
+      <h3>Action Game</h3>
+      <p>Fast paced</p>
+    </div>
+
+    <div class="card" onclick="openGame('https://example.com')">
+      <h3>Puzzle Game</h3>
+      <p>Brain challenge</p>
+    </div>
+
+    <div class="card" onclick="openGame('https://example.com')">
+      <h3>Retro Game</h3>
+      <p>Old school vibes</p>
+    </div>
+
+    <div class="card" onclick="openGame('https://example.com')">
+      <h3>Arcade</h3>
+      <p>Classic feel</p>
+    </div>
+
   </div>
 
-  <div class="card" onclick="openGame('https://example.com')">
-    <h3>Game 3</h3>
-    <p>Click to play</p>
-  </div>
-
-  <div class="card" onclick="openGame('https://example.com')">
-    <h3>Game 4</h3>
-    <p>Click to play</p>
+  <!-- MUSIC -->
+  <div class="music">
+    <h3 style="color:#b026ff; margin:0;">Music Player</h3>
+    <audio controls>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <div class="small">Upload your own MP3 as music.mp3</div>
   </div>
 
 </div>
-
-<footer>
-  Orbit • neon arcade UI
-</footer>
 
 <script>
 function openGame(url) {
