@@ -46,24 +46,119 @@ body {
 /* MOVING STAR EFFECT */
 @keyframes drift {
   0% {
-    transform: translateY(0px) translateX(0px);
+    transform: translate3d(0px, 0px, 0px) scale(1);
   }
 
-  25% {
-    transform: translateY(-12px) translateX(6px);
+  20% {
+    transform: translate3d(6px, -10px, 0px) scale(1.1);
   }
 
-  50% {
-    transform: translateY(-20px) translateX(-4px);
+  40% {
+    transform: translate3d(-8px, -18px, 0px) scale(0.95);
   }
 
-  75% {
-    transform: translateY(-10px) translateX(8px);
+  60% {
+    transform: translate3d(10px, -28px, 0px) scale(1.05);
+  }
+
+  80% {
+    transform: translate3d(-6px, -15px, 0px) scale(1);
   }
 
   100% {
-    transform: translateY(0px) translateX(0px);
+    transform: translate3d(0px, 0px, 0px) scale(1);
   }
+}
+
+/* NEBULA GLOW */
+.nebula {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(176,38,255,0.16), transparent 70%);
+  filter: blur(50px);
+  animation: nebulaMove 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nebula.two {
+  width: 350px;
+  height: 350px;
+  right: 5%;
+  top: 20%;
+  animation-duration: 26s;
+}
+
+@keyframes nebulaMove {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  100% {
+    transform: translate(40px, -30px);
+  }
+}
+
+/* BOOT SCREEN */
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #b026ff;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 2px;
+  animation: bootFade 1.5s ease forwards;
+  animation-delay: 3s;
+}
+
+.boot-text {
+  margin: 6px 0;
+  text-shadow: 0 0 12px #b026ff;
+  animation: floaty 2s ease-in-out infinite;
+}
+
+@keyframes bootFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* LIVE WIDGETS */
+.widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.widget {
+  background: rgba(10,0,16,0.92);
+  border: 1px solid #2a003f;
+  border-radius: 18px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  animation: floaty 5s ease-in-out infinite;
+}
+
+.widget-title {
+  color: #b026ff;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.widget-big {
+  font-size: 24px;
+  font-weight: 900;
 }
 
 @keyframes twinkle {
@@ -328,6 +423,17 @@ audio {
 
 <body>
 
+<!-- BOOT SCREEN -->
+<div class="boot-screen">
+  <div class="boot-text">Initializing Orbit OS...</div>
+  <div class="boot-text">Loading Modules...</div>
+  <div class="boot-text">Access Granted</div>
+</div>
+
+<!-- NEBULA EFFECTS -->
+<div class="nebula"></div>
+<div class="nebula two"></div>
+
 <!-- STAR BACKGROUND -->
 <div class="stars">
   <div class="star" style="top:10%; left:20%; animation-duration:3s;"></div>
@@ -387,7 +493,27 @@ audio {
     </div>
   </div>
 
-  <!-- SEARCH -->
+  <!-- LIVE WIDGETS -->
+<div class="widgets">
+
+  <div class="widget">
+    <div class="widget-title">Status</div>
+    <div class="widget-big">ONLINE</div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-title">Trending</div>
+    <div class="widget-big">Retro Games</div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-title">Now Playing</div>
+    <div class="widget-big">Orbit Radio</div>
+  </div>
+
+</div>
+
+<!-- SEARCH -->
   <div class="search">
     <input type="text" id="search" placeholder="Search games..." onkeyup="searchGames()">
   </div>
