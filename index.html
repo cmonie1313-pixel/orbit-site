@@ -2,252 +2,385 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Orbit OS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbit OS</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #120018, #000);
   font-family: Arial, sans-serif;
   font-weight: 700;
+  background: radial-gradient(circle at top, #170021, #000);
   color: white;
-  height: 100vh;
   overflow: hidden;
 }
 
-/* FLOAT ANIMATION */
+/* FLOAT */
 @keyframes floaty {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-4px); }
   100% { transform: translateY(0px); }
 }
 
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 220px;
-  height: 100%;
-  background: #0a0010;
+  height: 100vh;
+  background: rgba(10,0,16,0.95);
   border-right: 1px solid #2a003f;
-  padding: 20px;
+  padding: 80px 18px 20px;
+  z-index: 5;
 }
 
 .logo {
-  font-size: 28px;
-  color: #b026ff;
-  text-shadow: 0 0 20px #b026ff;
+  font-size: 30px;
   font-weight: 900;
-  animation: floaty 3.5s infinite ease-in-out;
+  color: #b026ff;
+  text-shadow:
+    0 0 10px #b026ff,
+    0 0 25px #6a00ff;
   margin-bottom: 25px;
+  animation: floaty 4s ease-in-out infinite;
 }
 
 .nav-item {
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: 0.25s;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .nav-item:hover {
-  background: #1a0026;
+  background: #1b0028;
   box-shadow: 0 0 15px #b026ff;
-}
-
-/* MAIN */
-.main {
-  margin-left: 220px;
-  padding: 20px;
-}
-
-/* TOP */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  font-size: 32px;
-  color: #b026ff;
-  text-shadow: 0 0 20px #b026ff;
-  animation: floaty 4s infinite ease-in-out;
-  font-weight: 900;
+  transform: translateX(5px);
 }
 
 /* START BUTTON */
 .start-btn {
   position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 100;
-  background: #0a0010;
+  top: 18px;
+  left: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   border: 1px solid #b026ff;
-  padding: 8px 12px;
-  border-radius: 10px;
+  background: #0a0010;
+  color: white;
+  font-size: 20px;
   cursor: pointer;
+  z-index: 20;
+  transition: 0.25s;
+}
+
+.start-btn:hover {
+  box-shadow: 0 0 15px #b026ff;
+  transform: scale(1.05);
 }
 
 /* START MENU */
 .start-menu {
   position: fixed;
-  top: 60px;
-  left: 15px;
-  width: 180px;
-  background: #0a0010;
+  top: 75px;
+  left: 18px;
+  width: 210px;
+  background: rgba(10,0,16,0.97);
   border: 1px solid #2a003f;
-  padding: 10px;
+  border-radius: 16px;
+  padding: 12px;
   display: none;
-  border-radius: 12px;
-  z-index: 100;
+  z-index: 19;
+  backdrop-filter: blur(10px);
+}
+
+.start-title {
+  color: #b026ff;
+  font-weight: 900;
+  margin-bottom: 10px;
 }
 
 .start-item {
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .start-item:hover {
-  background: #1a0026;
+  background: #1b0028;
+  box-shadow: 0 0 10px #b026ff;
+}
+
+/* MAIN */
+.main {
+  margin-left: 220px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 25px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #b026ff;
+  text-shadow:
+    0 0 15px #b026ff,
+    0 0 35px #6a00ff;
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* WALLPAPER BUTTONS */
+.wallpapers {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wall-btn {
+  border: 1px solid #b026ff;
+  background: #0a0010;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.wall-btn:hover {
+  box-shadow: 0 0 15px #b026ff;
 }
 
 /* SEARCH */
 .search {
-  margin: 20px 0;
-  text-align: center;
+  margin: 25px 0;
 }
 
 .search input {
-  width: 60%;
-  padding: 10px;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid #b026ff;
   background: #0a0010;
   color: white;
+  outline: none;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
 }
 
-/* CARD */
+/* CARDS */
 .card {
-  background: #0a0010;
+  background: rgba(10,0,16,0.95);
   border: 1px solid #2a003f;
-  border-radius: 15px;
-  padding: 18px;
-  cursor: pointer;
+  border-radius: 18px;
+  padding: 20px;
   transition: 0.25s;
-  animation: floaty 5s infinite ease-in-out;
+  cursor: pointer;
+  animation: floaty 5s ease-in-out infinite;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  border: 1px solid #b026ff;
-  box-shadow: 0 0 25px #b026ff;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 20px #b026ff;
+  border-color: #b026ff;
 }
 
 .card h3 {
-  margin: 0;
+  margin-top: 0;
   color: #b026ff;
-  font-weight: 900;
+  font-size: 22px;
+}
+
+.card p {
+  color: #999;
 }
 
 /* MUSIC */
 .music {
   margin-top: 25px;
-  padding: 15px;
-  border-radius: 15px;
-  background: #0a0010;
+  padding: 18px;
+  background: rgba(10,0,16,0.95);
   border: 1px solid #2a003f;
-  animation: floaty 6s infinite ease-in-out;
+  border-radius: 18px;
+}
+
+.music h3 {
+  color: #b026ff;
+  margin-top: 0;
 }
 
 audio {
   width: 100%;
-  margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .sidebar {
+    width: 85px;
+    padding: 80px 10px 20px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .nav-item {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .main {
+    margin-left: 85px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<button class="start-btn" onclick="toggleMenu()">☰</button>
+<!-- CLICK SOUND -->
+<audio id="clickSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=click-124467.mp3" type="audio/mpeg">
+</audio>
 
-<div class="start-menu" id="menu">
-  <div class="start-item">🏠 Home</div>
-  <div class="start-item">🎮 Games</div>
-  <div class="start-item">🔥 Trending</div>
-  <div class="start-item">⭐ Favorites</div>
+<!-- START BUTTON -->
+<button class="start-btn" onclick="toggleMenu(); playClick();">☰</button>
+
+<!-- START MENU -->
+<div class="start-menu" id="startMenu">
+  <div class="start-title">Orbit Apps</div>
+
+  <div class="start-item" onclick="playClick()">🏠 Home</div>
+  <div class="start-item" onclick="playClick()">🎮 Games</div>
+  <div class="start-item" onclick="playClick()">🔥 Trending</div>
+  <div class="start-item" onclick="playClick()">⭐ Favorites</div>
+  <div class="start-item" onclick="playClick()">🎵 Music</div>
 </div>
 
+<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="logo">ORBIT</div>
-  <div class="nav-item">Home</div>
-  <div class="nav-item">Games</div>
-  <div class="nav-item">Trending</div>
-  <div class="nav-item">Music</div>
+
+  <div class="nav-item" onclick="playClick()">🏠 Home</div>
+  <div class="nav-item" onclick="playClick()">🎮 Games</div>
+  <div class="nav-item" onclick="playClick()">🔥 Trending</div>
+  <div class="nav-item" onclick="playClick()">⭐ Favorites</div>
+  <div class="nav-item" onclick="playClick()">⚙ Settings</div>
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
   <div class="topbar">
-    <div class="title">Orbit Dashboard</div>
+    <div class="title">Orbit OS</div>
+
+    <div class="wallpapers">
+      <button class="wall-btn" onclick="setWallpaper('purple')">Purple</button>
+      <button class="wall-btn" onclick="setWallpaper('blue')">Blue</button>
+      <button class="wall-btn" onclick="setWallpaper('red')">Red</button>
+    </div>
   </div>
 
+  <!-- SEARCH -->
   <div class="search">
-    <input id="search" placeholder="Search games..." onkeyup="searchGames()">
+    <input type="text" id="search" placeholder="Search games..." onkeyup="searchGames()">
   </div>
 
+  <!-- GAME GRID -->
   <div class="grid">
 
-    <div class="card">
-      <h3>Action Game</h3>
+    <div class="card" onclick="playClick()">
+      <h3>Action</h3>
+      <p>Fast-paced gameplay</p>
     </div>
 
-    <div class="card">
-      <h3>Puzzle Game</h3>
+    <div class="card" onclick="playClick()">
+      <h3>Puzzle</h3>
+      <p>Brain challenge</p>
     </div>
 
-    <div class="card">
-      <h3>Retro Game</h3>
+    <div class="card" onclick="playClick()">
+      <h3>Retro</h3>
+      <p>Classic arcade feel</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="playClick()">
       <h3>Arcade</h3>
+      <p>High score chase</p>
     </div>
 
   </div>
 
+  <!-- MUSIC -->
   <div class="music">
-    <h3 style="color:#b026ff; font-weight:900;">Music Player</h3>
-    <audio controls></audio>
+    <h3>Music Player</h3>
+    <audio controls>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
 </div>
 
 <script>
 function toggleMenu() {
-  const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+  const menu = document.getElementById('startMenu');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
 function searchGames() {
-  const input = document.getElementById("search").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
+  const input = document.getElementById('search').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
 
   cards.forEach(card => {
-    card.style.display =
-      card.innerText.toLowerCase().includes(input)
-        ? "block"
-        : "none";
+    const text = card.innerText.toLowerCase();
+    card.style.display = text.includes(input) ? 'block' : 'none';
   });
+}
+
+function playClick() {
+  const sound = document.getElementById('clickSound');
+  sound.currentTime = 0;
+  sound.play();
+}
+
+function setWallpaper(type) {
+  if(type === 'purple') {
+    document.body.style.background = 'radial-gradient(circle at top, #170021, #000)';
+  }
+
+  if(type === 'blue') {
+    document.body.style.background = 'radial-gradient(circle at top, #001b3d, #000)';
+  }
+
+  if(type === 'red') {
+    document.body.style.background = 'radial-gradient(circle at top, #320000, #000)';
+  }
 }
 </script>
 
